@@ -1,15 +1,18 @@
-// src/contexts/AuthContext.jsx
+// src/contexts/AuthContext.jsx - Updated for proxy
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext(null);
 
+// Use relative URL - Vite proxy will forward to Flask
 const api = axios.create({
-  baseURL: "http://localhost:5555/api",
+  baseURL: "/api", // Changed from 'http://localhost:5555/api'
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+// ... rest of the file remains the same
 
 // Add auth token to requests
 api.interceptors.request.use((config) => {
