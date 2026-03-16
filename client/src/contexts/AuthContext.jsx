@@ -4,15 +4,13 @@ import axios from "axios";
 
 const AuthContext = createContext(null);
 
-// Use relative URL - Vite proxy will forward to Flask
+// src/contexts/AuthContext.jsx - Alternative with env variable
 const api = axios.create({
-  baseURL: "/api", // Changed from 'http://localhost:5555/api'
+  baseURL: import.meta.env.VITE_API_URL || "/api",
   headers: {
     "Content-Type": "application/json",
   },
 });
-
-// ... rest of the file remains the same
 
 // Add auth token to requests
 api.interceptors.request.use((config) => {
